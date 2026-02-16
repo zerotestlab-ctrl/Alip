@@ -1,13 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Arbitrum Learning Infrastructure Platform - Master Web3 development" />
-    <title>Arbitrum Learning Infrastructure Platform (ALIP)</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>ALIP — Arbitrum Learning Infrastructure Platform</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #f8fafc;
+  line-height: 1.6;
+}
+
+header {
+  padding: 80px 20px;
+  text-align: center;
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 4vw, 2.5rem);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+p {
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 28px;
+  background: #3b82f6;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  background: #2563eb;
+}
+
+section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.grid {
+  display: grid;
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  opacity: 0.7;
+  font-size: 0.9rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Interactive Onboarding for the Arbitrum Ecosystem</h1>
+  <p>
+    Learn Web3 and Arbitrum fundamentals through an immersive,
+    guided experience — no blockchain experience required.
+  </p>
+
+<a href="/demo.html" class="btn">
+    Try the Live Demo
+  </a>
+</header>
+
+<section>
+  <h2>Why Web3 Onboarding Fails</h2>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <p>
+        Most users struggle with wallet setup, Layer-2 bridges,
+        and interacting with decentralized applications.
+      </p>
+    </div>
+
+    <div class="card">
+      <p>
+        Traditional tutorials are static and confusing.
+        New users need hands-on learning — not documentation walls.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Our Solution</h2>
+
+  <div class="grid grid-4">
+    <div class="card">
+      <h3>Sandbox Simulation</h3>
+      <p>Risk-free environment to explore Web3 interactions.</p>
+    </div>
+
+    <div class="card">
+      <h3>Mission Builder</h3>
+      <p>Structured onboarding paths and guided tasks.</p>
+    </div>
+
+    <div class="card">
+      <h3>Analytics Dashboard</h3>
+      <p>Track learning progress and engagement.</p>
+    </div>
+
+    <div class="card">
+      <h3>Educator Tools</h3>
+      <p>Teach workshops with interactive modules.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>How It Works</h2>
+
+  <div class="grid grid-4">
+    <div class="card">
+      <h3>1</h3>
+      <p>Explore the sandbox interface</p>
+    </div>
+
+    <div class="card">
+      <h3>2</h3>
+      <p>Complete guided missions</p>
+    </div>
+
+    <div class="card">
+      <h3>3</h3>
+      <p>Track progress via analytics</p>
+    </div>
+
+    <div class="card">
+      <h3>4</h3>
+      <p>Host sessions using educator tools</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Who It's For</h2>
+
+  <div class="grid grid-4">
+    <div class="card"><p>🎓 Students</p></div>
+    <div class="card"><p>👨‍💻 Builders</p></div>
+    <div class="card"><p>📈 Communities</p></div>
+    <div class="card"><p>💼 Educators</p></div>
+  </div>
+</section>
+
+<footer>
+  © 2026 ALIP — Built for Arbitrum Education Grants
+</footer>
+
+</body>
 </html>
