@@ -1,10 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>ALIP Demo</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ALIP Sandbox Demo</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,sans-serif}
+
+body{
+  background:#0f172a;
+  color:#f8fafc;
+  display:flex;
+  min-height:100vh;
+}
+
+.sidebar{
+  width:220px;
+  background:#020617;
+  padding:20px;
+}
+
+.sidebar h2{
+  margin-bottom:30px;
+  font-size:20px;
+}
+
+.sidebar button{
+  width:100%;
+  margin-bottom:10px;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#1e293b;
+  color:white;
+  cursor:pointer;
+}
+
+.sidebar button:hover{
+  background:#3b82f6;
+}
+
+.main{
+  flex:1;
+  padding:40px;
+}
+
+.card{
+  background:#1e293b;
+  padding:30px;
+  border-radius:16px;
+  max-width:800px;
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+.fake-ui{
+  margin-top:20px;
+  padding:20px;
+  background:#020617;
+  border-radius:12px;
+}
+
+.progress{
+  height:10px;
+  background:#334155;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:10px;
+}
+
+.progress-bar{
+  height:100%;
+  width:60%;
+  background:#3b82f6;
+}
+</style>
+
+<script>
+function showTab(tab){
+  document.getElementById("content").innerHTML = tabs[tab];
+}
+
+const tabs = {
+sandbox: `
+<h1>Sandbox Simulation</h1>
+<p>Practice Web3 interactions in a safe environment.</p>
+<div class="fake-ui">
+Wallet Connected ✅<br><br>
+Transaction Simulation Running...
+<div class="progress">
+<div class="progress-bar"></div>
+</div>
+</div>`,
+
+mission: `
+<h1>Mission Builder</h1>
+<p>Complete guided onboarding tasks.</p>
+<div class="fake-ui">
+Mission: Bridge assets to Arbitrum<br><br>
+Status: In Progress 🚀
+</div>`,
+
+analytics: `
+<h1>Analytics Dashboard</h1>
+<p>Track learner progress.</p>
+<div class="fake-ui">
+Completion Rate: 78%<br>
+Active Users: 124<br>
+Avg Session: 6m 32s
+</div>`,
+
+educator: `
+<h1>Educator Panel</h1>
+<p>Host interactive workshops.</p>
+<div class="fake-ui">
+Workshop Mode: Enabled<br>
+Students Connected: 18
+</div>`
+};
+</script>
 </head>
-<body style="background:#0f172a;color:white;text-align:center;padding:100px;">
-  <h1>Demo Coming Soon</h1>
-  <p>This will host the interactive sandbox.</p>
+
+<body>
+
+<div class="sidebar">
+<h2>ALIP Demo</h2>
+
+<button onclick="showTab('sandbox')">Sandbox</button>
+<button onclick="showTab('mission')">Mission</button>
+<button onclick="showTab('analytics')">Analytics</button>
+<button onclick="showTab('educator')">Educator</button>
+</div>
+
+<div class="main">
+<div class="card" id="content">
+<h1>Welcome to ALIP</h1>
+<p>Select a module from the sidebar to explore the demo.</p>
+</div>
+</div>
+
 </body>
 </html>
