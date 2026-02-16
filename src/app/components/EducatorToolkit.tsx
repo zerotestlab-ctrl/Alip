@@ -1,285 +1,427 @@
-import { motion } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "motion/react";
 import {
   BookOpen,
   Users,
   Video,
   FileText,
-  Download,
-  Plus,
   Calendar,
-  MessageSquare,
-  GraduationCap,
-  Lightbulb,
-  Code2,
-  PenTool,
+  Settings,
+  Plus,
+  Target,
+  TrendingUp,
+  Clock,
 } from "lucide-react";
 
 export function EducatorToolkit() {
-  const resources = [
-    {
-      title: "Smart Contract Templates",
-      description: "Pre-built contract examples for teaching",
-      icon: Code2,
-      count: "24 templates",
-      color: "from-blue-500 to-cyan-500",
-    },
-    {
-      title: "Video Tutorials",
-      description: "Recorded lectures and demonstrations",
-      icon: Video,
-      count: "48 videos",
-      color: "from-purple-500 to-pink-500",
-    },
-    {
-      title: "Course Materials",
-      description: "Slides, worksheets, and guides",
-      icon: FileText,
-      count: "36 documents",
-      color: "from-emerald-500 to-teal-500",
-    },
-    {
-      title: "Assessment Tools",
-      description: "Quizzes and evaluation frameworks",
-      icon: PenTool,
-      count: "18 assessments",
-      color: "from-orange-500 to-red-500",
-    },
+  const [activeTab, setActiveTab] = useState("overview");
+
+  const tabs = [
+    { id: "overview", label: "Overview", icon: BookOpen },
+    { id: "missions", label: "Missions", icon: Target },
+    { id: "students", label: "Students", icon: Users },
+    { id: "settings", label: "Settings", icon: Settings },
   ];
 
-  const workshops = [
+  // Overview content
+  const stats = [
+    { label: "Total Students", value: "142", icon: Users, change: "+12 this month" },
+    { label: "Active Missions", value: "18", icon: Target, change: "3 new this week" },
+    { label: "Completion Rate", value: "87%", icon: TrendingUp, change: "+5% this month" },
+  ];
+
+  const recentWorkshops = [
     {
       title: "Introduction to Web3 Development",
       date: "Feb 20, 2026",
       students: 24,
-      status: "Upcoming",
-      statusColor: "bg-blue-500/10 text-blue-400 border-blue-500/20",
+      status: "upcoming",
     },
     {
       title: "Advanced Smart Contract Security",
       date: "Feb 18, 2026",
       students: 18,
-      status: "In Progress",
-      statusColor: "bg-emerald-500/10 text-emerald-400 border-emerald-500/20",
+      status: "in-progress",
     },
     {
       title: "DeFi Protocol Workshop",
       date: "Feb 15, 2026",
       students: 32,
-      status: "Completed",
-      statusColor: "bg-zinc-500/10 text-zinc-400 border-zinc-500/20",
+      status: "completed",
     },
   ];
 
-  const quickActions = [
+  const resources = [
+    { title: "Smart Contract Templates", count: 24, icon: FileText },
+    { title: "Video Tutorials", count: 48, icon: Video },
+    { title: "Course Materials", count: 36, icon: BookOpen },
+  ];
+
+  // Missions content
+  const missions = [
     {
-      icon: Plus,
-      title: "Create Workshop",
-      description: "Set up a new learning session",
-      color: "from-blue-500 to-cyan-500",
+      title: "Smart Contract Basics",
+      students: 45,
+      completion: 78,
+      status: "active",
     },
     {
-      icon: Users,
-      title: "Manage Students",
-      description: "View and organize learners",
-      color: "from-purple-500 to-pink-500",
+      title: "DeFi Fundamentals",
+      students: 38,
+      completion: 65,
+      status: "active",
     },
     {
-      icon: MessageSquare,
-      title: "Community Forum",
-      description: "Engage with students",
-      color: "from-emerald-500 to-teal-500",
+      title: "NFT Development",
+      students: 52,
+      completion: 92,
+      status: "active",
     },
-    {
-      icon: Download,
-      title: "Export Reports",
-      description: "Download analytics data",
-      color: "from-orange-500 to-red-500",
-    },
+  ];
+
+  // Students content
+  const students = [
+    { name: "Alex Johnson", email: "alex@example.com", missions: 12, hours: 48 },
+    { name: "Sarah Chen", email: "sarah@example.com", missions: 15, hours: 62 },
+    { name: "Mike Wilson", email: "mike@example.com", missions: 8, hours: 34 },
+    { name: "Emma Davis", email: "emma@example.com", missions: 20, hours: 85 },
   ];
 
   return (
-    <div className="min-h-full w-full">
-      <div className="max-w-[1200px] mx-auto p-12 space-y-10">
+    <div className="min-h-full bg-neutral-50 p-4 md:p-8">
+      <div className="max-w-7xl mx-auto space-y-6">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-4">
-            <GraduationCap className="w-4 h-4 text-purple-400" />
-            <span className="text-sm text-purple-300 font-medium">Educator Tools</span>
-          </div>
-          <h1 className="text-4xl font-bold text-white mb-3">Educator Toolkit</h1>
-          <p className="text-lg text-zinc-400">
-            Resources and tools to create amazing Web3 learning experiences
-          </p>
-        </motion.div>
-
-        {/* Quick Actions */}
-        <div className="grid grid-cols-4 gap-6">
-          {quickActions.map((action, index) => {
-            const Icon = action.icon;
-            return (
-              <motion.button
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 hover:border-zinc-700/50 rounded-2xl p-6 transition-all text-left group"
-              >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform`}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-white font-semibold mb-1">{action.title}</h3>
-                <p className="text-sm text-zinc-400">{action.description}</p>
-              </motion.button>
-            );
-          })}
+        <div className="mb-6">
+          <h1 className="text-2xl md:text-3xl font-bold text-neutral-900 mb-2">
+            Educator Toolkit
+          </h1>
+          <p className="text-neutral-600">Manage your students and learning content</p>
         </div>
 
-        {/* Resource Library */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="space-y-6"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-1">Resource Library</h2>
-              <p className="text-sm text-zinc-400">Teaching materials and content</p>
-            </div>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white rounded-xl font-semibold transition-all shadow-lg shadow-blue-500/25">
-              <Plus className="w-4 h-4" />
-              Add Resource
-            </button>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
-            {resources.map((resource, index) => {
-              const Icon = resource.icon;
+        {/* Tab Navigation */}
+        <div className="bg-white rounded-2xl p-2 shadow-sm border border-neutral-200">
+          <div className="flex gap-2 overflow-x-auto">
+            {tabs.map((tab) => {
+              const Icon = tab.icon;
               return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                  className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 hover:border-zinc-700/50 rounded-2xl p-8 transition-all group"
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 px-4 py-2.5 rounded-xl font-medium transition-all whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? "bg-blue-600 text-white shadow-sm"
+                      : "text-neutral-600 hover:bg-neutral-50"
+                  }`}
                 >
-                  <div className="flex items-start gap-5">
-                    <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${resource.color} flex items-center justify-center flex-shrink-0 shadow-lg`}>
-                      <Icon className="w-7 h-7 text-white" />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-lg font-semibold text-white mb-2">
-                        {resource.title}
-                      </h3>
-                      <p className="text-zinc-400 mb-4">{resource.description}</p>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm text-zinc-500 font-medium">
-                          {resource.count}
-                        </span>
-                        <button className="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors flex items-center gap-1">
-                          Browse
-                          <Download className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
+                  <Icon className="w-4 h-4" />
+                  <span className="text-sm">{tab.label}</span>
+                </button>
               );
             })}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Workshop Schedule */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-          className="space-y-6"
-        >
-          <div className="flex items-center justify-between">
-            <div>
-              <h2 className="text-2xl font-bold text-white mb-1">Workshop Schedule</h2>
-              <p className="text-sm text-zinc-400">Upcoming and past sessions</p>
-            </div>
-            <button className="flex items-center gap-2 px-5 py-2.5 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 text-white rounded-xl font-semibold transition-all">
-              <Calendar className="w-4 h-4" />
-              View Calendar
-            </button>
-          </div>
-
-          <div className="space-y-4">
-            {workshops.map((workshop, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 1.0 + index * 0.1 }}
-                className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 hover:border-zinc-700/50 rounded-2xl p-6 transition-all"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-start gap-5">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
-                      <BookOpen className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-white mb-2">
-                        {workshop.title}
-                      </h3>
-                      <div className="flex items-center gap-6 text-sm text-zinc-400">
-                        <div className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          {workshop.date}
+        {/* Tab Content */}
+        <AnimatePresence mode="wait">
+          {activeTab === "overview" && (
+            <motion.div
+              key="overview"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-6"
+            >
+              {/* Stats Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+                {stats.map((stat, index) => {
+                  const Icon = stat.icon;
+                  return (
+                    <div
+                      key={index}
+                      className="bg-white rounded-2xl p-6 shadow-sm border border-neutral-200"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center">
+                          <Icon className="w-6 h-6 text-blue-600" />
                         </div>
-                        <div className="flex items-center gap-2">
-                          <Users className="w-4 h-4" />
-                          {workshop.students} students
+                      </div>
+                      <div className="text-3xl font-bold text-neutral-900 mb-1">
+                        {stat.value}
+                      </div>
+                      <div className="text-sm text-neutral-600 mb-2">{stat.label}</div>
+                      <div className="text-xs text-emerald-600">{stat.change}</div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Resources */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-neutral-200">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="text-lg font-semibold text-neutral-900 mb-1">
+                      Resource Library
+                    </h2>
+                    <p className="text-sm text-neutral-600">Teaching materials and content</p>
+                  </div>
+                  <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all flex items-center gap-2 text-sm">
+                    <Plus className="w-4 h-4" />
+                    Add Resource
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {resources.map((resource, index) => {
+                    const Icon = resource.icon;
+                    return (
+                      <div
+                        key={index}
+                        className="p-4 bg-neutral-50 rounded-xl hover:bg-neutral-100 transition-colors"
+                      >
+                        <div className="flex items-start gap-3">
+                          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <Icon className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="font-medium text-neutral-900 mb-1 text-sm">
+                              {resource.title}
+                            </h3>
+                            <p className="text-xs text-neutral-600">
+                              {resource.count} items
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Workshops */}
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-neutral-200">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="text-lg font-semibold text-neutral-900 mb-1">
+                      Workshop Schedule
+                    </h2>
+                    <p className="text-sm text-neutral-600">Upcoming and recent sessions</p>
+                  </div>
+                </div>
+
+                <div className="space-y-3">
+                  {recentWorkshops.map((workshop, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl bg-neutral-50 gap-3"
+                    >
+                      <div className="flex items-start gap-3 flex-1">
+                        <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Calendar className="w-5 h-5 text-white" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <h3 className="font-medium text-neutral-900 mb-1">
+                            {workshop.title}
+                          </h3>
+                          <div className="flex items-center gap-4 text-sm text-neutral-600">
+                            <span>{workshop.date}</span>
+                            <span>•</span>
+                            <span>{workshop.students} students</span>
+                          </div>
+                        </div>
+                      </div>
+                      <span
+                        className={`px-3 py-1 rounded-lg text-xs font-medium whitespace-nowrap ${
+                          workshop.status === "upcoming"
+                            ? "bg-blue-50 text-blue-600"
+                            : workshop.status === "in-progress"
+                            ? "bg-emerald-50 text-emerald-600"
+                            : "bg-neutral-200 text-neutral-600"
+                        }`}
+                      >
+                        {workshop.status === "upcoming"
+                          ? "Upcoming"
+                          : workshop.status === "in-progress"
+                          ? "In Progress"
+                          : "Completed"}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === "missions" && (
+            <motion.div
+              key="missions"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="space-y-4"
+            >
+              <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-neutral-200">
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <h2 className="text-lg font-semibold text-neutral-900 mb-1">
+                      Active Missions
+                    </h2>
+                    <p className="text-sm text-neutral-600">Manage your learning missions</p>
+                  </div>
+                  <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all flex items-center gap-2 text-sm">
+                    <Plus className="w-4 h-4" />
+                    Create Mission
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  {missions.map((mission, index) => (
+                    <div
+                      key={index}
+                      className="p-6 bg-neutral-50 rounded-xl hover:bg-neutral-100 transition-colors"
+                    >
+                      <div className="flex items-start justify-between mb-4">
+                        <div>
+                          <h3 className="font-semibold text-neutral-900 mb-1">
+                            {mission.title}
+                          </h3>
+                          <p className="text-sm text-neutral-600">
+                            {mission.students} students enrolled
+                          </p>
+                        </div>
+                        <span className="px-3 py-1 bg-emerald-50 text-emerald-600 rounded-lg text-xs font-medium">
+                          Active
+                        </span>
+                      </div>
+                      <div>
+                        <div className="flex items-center justify-between text-sm mb-2">
+                          <span className="text-neutral-600">Avg. Completion</span>
+                          <span className="font-semibold text-neutral-900">
+                            {mission.completion}%
+                          </span>
+                        </div>
+                        <div className="h-2 bg-neutral-200 rounded-full overflow-hidden">
+                          <div
+                            className="h-full bg-blue-600 transition-all"
+                            style={{ width: `${mission.completion}%` }}
+                          />
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <span className={`px-4 py-1.5 rounded-full text-xs font-semibold border ${workshop.statusColor}`}>
-                    {workshop.status}
-                  </span>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+              </div>
+            </motion.div>
+          )}
 
-        {/* Tips & Ideas */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 1.3 }}
-          className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl p-8"
-        >
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
-              <Lightbulb className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-2">Teaching Tips</h3>
-              <ul className="space-y-2 text-zinc-300">
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400 mt-1">•</span>
-                  <span>Start with interactive sandbox exercises to build student confidence</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400 mt-1">•</span>
-                  <span>Use real-world examples from popular DeFi protocols</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-purple-400 mt-1">•</span>
-                  <span>Encourage peer code reviews to foster collaborative learning</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </motion.div>
+          {activeTab === "students" && (
+            <motion.div
+              key="students"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-neutral-200"
+            >
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-1">
+                  Student Progress
+                </h2>
+                <p className="text-sm text-neutral-600">Track individual student performance</p>
+              </div>
+
+              <div className="space-y-3">
+                {students.map((student, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col md:flex-row md:items-center justify-between p-4 rounded-xl bg-neutral-50 hover:bg-neutral-100 transition-colors gap-3"
+                  >
+                    <div className="flex items-center gap-3 flex-1">
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center text-white font-semibold text-sm flex-shrink-0">
+                        {student.name.charAt(0)}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="font-medium text-neutral-900">{student.name}</h3>
+                        <p className="text-sm text-neutral-600 truncate">{student.email}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-6 text-sm">
+                      <div>
+                        <div className="text-neutral-600 mb-1">Missions</div>
+                        <div className="font-semibold text-neutral-900">{student.missions}</div>
+                      </div>
+                      <div>
+                        <div className="text-neutral-600 mb-1">Hours</div>
+                        <div className="font-semibold text-neutral-900">{student.hours}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
+          {activeTab === "settings" && (
+            <motion.div
+              key="settings"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+              className="bg-white rounded-2xl p-6 md:p-8 shadow-sm border border-neutral-200"
+            >
+              <div className="mb-6">
+                <h2 className="text-lg font-semibold text-neutral-900 mb-1">Settings</h2>
+                <p className="text-sm text-neutral-600">Manage your platform preferences</p>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-neutral-900 mb-2">
+                    Platform Name
+                  </label>
+                  <input
+                    type="text"
+                    defaultValue="ALIP"
+                    className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-neutral-900 mb-2">
+                    Default Mission Duration
+                  </label>
+                  <select className="w-full px-4 py-2.5 bg-neutral-50 border border-neutral-200 rounded-lg text-neutral-900 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500">
+                    <option>30 minutes</option>
+                    <option>45 minutes</option>
+                    <option>60 minutes</option>
+                    <option>90 minutes</option>
+                  </select>
+                </div>
+
+                <div className="flex items-center justify-between p-4 bg-neutral-50 rounded-lg">
+                  <div>
+                    <div className="font-medium text-neutral-900 mb-1">
+                      Email Notifications
+                    </div>
+                    <div className="text-sm text-neutral-600">
+                      Receive updates about student progress
+                    </div>
+                  </div>
+                  <label className="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" className="sr-only peer" defaultChecked />
+                    <div className="w-11 h-6 bg-neutral-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-blue-500/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-neutral-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                  </label>
+                </div>
+
+                <button className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all">
+                  Save Changes
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

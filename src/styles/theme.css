@@ -1,8 +1,8 @@
 @layer theme {
   :root {
-    /* Color tokens for dark theme */
-    --color-background: #09090b;
-    --color-foreground: #fafafa;
+    /* Color tokens for clean, modern theme */
+    --color-background: #fafafa;
+    --color-foreground: #171717;
   }
 }
 
@@ -39,19 +39,19 @@ body {
 
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #18181b;
+  background: #f5f5f5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
-  border-radius: 5px;
+  background: #d4d4d4;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #a3a3a3;
 }

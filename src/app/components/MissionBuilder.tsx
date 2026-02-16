@@ -8,7 +8,6 @@ import {
   Code2,
   HelpCircle,
   Play,
-  Zap,
 } from "lucide-react";
 
 export function MissionBuilder() {
@@ -25,29 +24,21 @@ export function MissionBuilder() {
     {
       icon: BookOpen,
       title: "Smart Contract Fundamentals",
-      description: "Introduction to writing and deploying smart contracts",
-      color: "from-blue-500 to-cyan-500",
       difficulty: "Beginner",
     },
     {
       icon: Code2,
       title: "DeFi Protocol Development",
-      description: "Build decentralized finance applications",
-      color: "from-purple-500 to-pink-500",
       difficulty: "Advanced",
     },
     {
       icon: HelpCircle,
       title: "NFT Marketplace Creation",
-      description: "Create and deploy NFT smart contracts",
-      color: "from-emerald-500 to-teal-500",
       difficulty: "Intermediate",
     },
     {
       icon: Play,
       title: "Token Standards (ERC-20)",
-      description: "Implement fungible token standards",
-      color: "from-orange-500 to-red-500",
       difficulty: "Intermediate",
     },
   ];
@@ -57,78 +48,73 @@ export function MissionBuilder() {
     "Liquidity Pools",
     "DAO Governance",
     "Cross-chain Bridges",
-    "Token Economics",
-    "Gas Optimization",
   ];
 
   return (
-    <div className="min-h-full w-full">
-      <div className="max-w-[1000px] mx-auto p-12 space-y-12">
+    <div className="min-h-full bg-neutral-50 p-4 md:p-8">
+      <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-4"
+          className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-500/10 border border-purple-500/20 rounded-full mb-2">
-            <Sparkles className="w-4 h-4 text-purple-400" />
-            <span className="text-sm text-purple-300 font-medium">AI-Powered Mission Generation</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-blue-50 rounded-full mb-4 border border-blue-100">
+            <Sparkles className="w-4 h-4 text-blue-600" />
+            <span className="text-sm text-blue-600 font-medium">AI-Powered Mission Generation</span>
           </div>
-          <h1 className="text-4xl font-bold text-white">Mission Builder Studio</h1>
-          <p className="text-lg text-zinc-400 max-w-2xl mx-auto">
-            Enter any Web3 topic and let AI create a comprehensive learning mission for you
+          <h1 className="text-3xl md:text-4xl font-bold text-neutral-900 mb-3">
+            Mission Builder Studio
+          </h1>
+          <p className="text-lg text-neutral-600 max-w-2xl mx-auto">
+            Enter any Web3 topic and let AI create a comprehensive learning mission
           </p>
         </motion.div>
 
-        {/* Main Input Section */}
+        {/* Main Input */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="relative"
+          className="bg-white rounded-2xl p-8 shadow-sm border border-neutral-200"
         >
-          <div className="bg-gradient-to-br from-zinc-900/80 to-zinc-900/40 backdrop-blur-sm border border-zinc-800/50 rounded-3xl p-10 shadow-2xl">
-            <label className="block text-sm font-medium text-zinc-300 mb-4">
-              Enter Mission Topic
-            </label>
-            <div className="relative">
-              <input
-                type="text"
-                value={topic}
-                onChange={(e) => setTopic(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
-                placeholder="e.g., Building a Decentralized Exchange on Arbitrum"
-                className="w-full px-6 py-5 bg-zinc-800/50 border-2 border-zinc-700/50 rounded-2xl text-white text-lg placeholder:text-zinc-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
-              />
-              <Zap className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-600" />
-            </div>
+          <label className="block text-sm font-medium text-neutral-900 mb-3">
+            Enter Mission Topic
+          </label>
+          <input
+            type="text"
+            value={topic}
+            onChange={(e) => setTopic(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleGenerate()}
+            placeholder="e.g., Building a Decentralized Exchange on Arbitrum"
+            className="w-full px-4 py-4 bg-neutral-50 border border-neutral-200 rounded-xl text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all mb-4"
+          />
 
-            <button
-              onClick={handleGenerate}
-              disabled={!topic.trim()}
-              className="w-full mt-6 px-8 py-5 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 disabled:from-zinc-700 disabled:to-zinc-700 text-white rounded-2xl font-semibold text-lg transition-all shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 disabled:shadow-none flex items-center justify-center gap-3 group disabled:cursor-not-allowed"
-            >
-              <Sparkles className="w-5 h-5" />
-              Generate Mission
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
+          <button
+            onClick={handleGenerate}
+            disabled={!topic.trim()}
+            className="w-full px-8 py-4 bg-blue-600 hover:bg-blue-700 disabled:bg-neutral-200 text-white disabled:text-neutral-400 rounded-xl font-semibold transition-all shadow-sm hover:shadow-md disabled:shadow-none flex items-center justify-center gap-2"
+          >
+            <Sparkles className="w-5 h-5" />
+            Generate Mission
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </motion.div>
 
-        {/* Quick Topic Suggestions */}
+        {/* Quick Suggestions */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-sm font-medium text-zinc-400 mb-4">Quick Suggestions</h3>
-          <div className="flex flex-wrap gap-3">
+          <h3 className="text-sm font-medium text-neutral-600 mb-3">Quick Suggestions</h3>
+          <div className="flex flex-wrap gap-2">
             {quickTopics.map((quickTopic, index) => (
               <button
                 key={index}
                 onClick={() => setTopic(quickTopic)}
-                className="px-4 py-2 bg-zinc-800/50 hover:bg-zinc-800 border border-zinc-700/50 hover:border-zinc-600 rounded-xl text-sm text-zinc-300 hover:text-white transition-all"
+                className="px-4 py-2 bg-white hover:bg-neutral-50 border border-neutral-200 rounded-lg text-sm text-neutral-700 transition-all"
               >
                 {quickTopic}
               </button>
@@ -136,45 +122,38 @@ export function MissionBuilder() {
           </div>
         </motion.div>
 
-        {/* Template Library */}
+        {/* Templates */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="space-y-6"
         >
-          <div>
-            <h2 className="text-xl font-semibold text-white mb-2">Mission Templates</h2>
-            <p className="text-sm text-zinc-400">Start with a pre-built mission template</p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-6">
+          <h2 className="text-xl font-semibold text-neutral-900 mb-4">
+            Mission Templates
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {templates.map((template, index) => {
               const Icon = template.icon;
               return (
-                <motion.button
+                <button
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
                   onClick={() => setTopic(template.title)}
-                  className="bg-zinc-900/50 backdrop-blur-sm border border-zinc-800/50 hover:border-zinc-700/50 rounded-2xl p-6 transition-all text-left group"
+                  className="bg-white hover:bg-neutral-50 border border-neutral-200 rounded-2xl p-6 transition-all text-left"
                 >
-                  <div className="flex items-start gap-4 mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${template.color} flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform`}>
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
                       <Icon className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-start justify-between mb-2">
-                        <h3 className="text-white font-semibold">{template.title}</h3>
-                        <span className="px-2 py-1 bg-zinc-800 text-zinc-400 text-xs rounded-lg font-medium">
+                        <h3 className="font-semibold text-neutral-900">{template.title}</h3>
+                        <span className="px-2 py-1 bg-neutral-100 text-neutral-600 text-xs rounded-lg font-medium whitespace-nowrap ml-2">
                           {template.difficulty}
                         </span>
                       </div>
-                      <p className="text-sm text-zinc-400">{template.description}</p>
                     </div>
                   </div>
-                </motion.button>
+                </button>
               );
             })}
           </div>
